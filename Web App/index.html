@@ -1,0 +1,36 @@
+<html>
+    <head>
+            <link rel="stylesheet" href="Turnero.css">
+            <script src="Turnero.js"></script>
+            <title>Mega Burger App</title>
+    </head>
+
+    <body>
+            <nav class="Nav">
+             <img src="Mega Burger 3.png">              
+            </nav>
+            <div id="Home" class="tabcontent" style="display:block;">
+            <h3>Home</h3> 
+            <p>Para continuar elija que hacer</p>
+            </div>
+                    
+            <div id="News" class="tabcontent">
+            <h3>Crear Pedidos</h3>\
+            </div>
+                    
+            <div id="Contact" class="tabcontent">
+            <h3>Editar Estado de Pedidos</h3>
+             </div>
+                    
+            <div id="About" class="tabcontent">
+            <h3>Ver Pedidos</h3>
+            </div> 
+    </body>
+
+    <footer>
+            <button class="tablink" onclick="openPage('News', this, 'green')" id="defaultOpen">Nuevo</button>
+            <button class="tablink" onclick="openPage('Contact', this, 'blue')">Editar</button>
+            <button class="tablink" onclick="openPage('About', this, 'orange')">Ver</button>
+
+    </footer>
+</html>

@@ -1,0 +1,51 @@
+
+img{
+   height: 100%;  
+}
+.nav{
+    height: 15%;
+    background-color: #FFC300;
+    text-align: center;
+}
+footer{
+  height: 15%;
+}
+body,  html {
+  background-color: #EEEDED;
+    height: 75.6%;
+    margin: 0;
+    font-family: Arial;
+  }
+h3,h1,p{
+    color: #484848;
+    text-align: center;
+}
+.tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    margin: 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 17px;
+    height:100%;
+    width: 33.33%;
+  }
+  
+  .tablink:hover {
+    background-color: #777;
+  }
+  
+  /* Style the tab content (and add height:100% for full page content) */
+  .tabcontent {
+    color: white;
+    display: none;
+    padding: 100px 20px;
+    height: 100%;
+  }
+  
+  #Home {background-color: #EEEDED;}
+  #News {background-color: #EEEDED;}
+  #Contact {background-color: #EEEDED;}
+  #About {background-color:#EEEDED;}
