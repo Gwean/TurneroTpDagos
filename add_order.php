@@ -4,7 +4,7 @@ require "required.php";
 
 // create file if not exists
 if(!file_exists(Paths::json)){
-    $f = fopen(Paths::json, 'w');
+    $f = fopen(Paths::json, 'w') or die ("cannot open file");
     fclose($f);
 }
 
@@ -22,4 +22,7 @@ $orders[] = new Order($ordinal);
 
 // write to file
 file_put_contents(Paths::json,json_encode($orders));
+
+echo "true";
+
 ?>

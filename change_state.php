@@ -43,4 +43,5 @@ if(!$found){
 // write to file
 file_put_contents(Paths::json,json_encode($orders));
 
+echo "true"
 ?>

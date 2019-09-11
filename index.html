@@ -1,64 +1,113 @@
 <html>
-    <head>
-            <link rel="stylesheet" href="Turnero.css">
-            <link rel="stylesheet" href="Inputs.css">
-            <script src="Turnero.js"></script>
-            <title>Mega Burger App</title>
-    </head>
+  <head>
+    <link rel="stylesheet" href="Turnero.css" />
+    <link rel="stylesheet" href="Inputs.css" />
+    <script src="Turnero.js"></script>
+    <title>Mega Burger App</title>
+  </head>
 
-    <body>
-            <nav class="Nav">
-             <img src="Mega Burger 3.png">              
-            </nav>
-            <div id="Home" class="tabcontent" style="display:block;">
-                <div class="Card">
-                        <h1>Home</h1> 
-                        <p>Para continuar elija que hacer</p>
-                </div>
-            </div>
-        
-        <!--    Nuevo Pedido    -->
-            <div id="Nuevo" class="tabcontent">
-                <div class="Card">
-                        <h1>Nuevo Pedido</h1>
-                                <h3 style="margin-top: 5%;">
-                                Numero del Pedido</h3>
-                                <input  class="NumeroPedido"
-                                        type="number" 
-                                        name="IdPedido" 
-                                        placeholder="127" 
-                                >
-                        <button class="BotonCrear">Crear</button>
-                </div>
-            </div>
-        <!--    Editar Pedido    -->            
-            <div id="Editar" class="tabcontent">
-                <div class="Card">
-                        <h1>Editar Estado</h1>
-                        <h3 style="margin-top: 5%;">
-                                        Numero del Pedido</h3>
-                                        <input  class="NumeroPedido"
-                                                type="number" 
-                                                name="IdPedido" 
-                                                placeholder="127" 
-                                        >
-                                <button class="BotonPrep">En Preparacion</button>
-                                <button class="BotonListo">Listo</button>
-                                <button class="BotonEntregado">Entregado</button>
-                </div>
-             </div>
-        <!--    Ver Pedidos    -->            
-            <div id="Ver" class="tabcontent">
-                <div class="Card">
-                                <h1>Ver Pedidos</h1>
-                        </div>            
-            </div> 
-    </body>
+  <body>
+    <nav class="Nav">
+      <img src="Mega Burger 3.png" />
+    </nav>
+    <div id="Home" class="tabcontent" style="display:block;">
+      <div class="Card">
+        <h1>Home</h1>
+        <p>Para continuar elija que hacer</p>
+      </div>
+    </div>
 
-    <footer>
-            <button class="tablink" onclick="openPage('Nuevo', this, 'green')" id="defaultOpen">Nuevo</button>
-            <button class="tablink" onclick="openPage('Editar', this, 'blue')">Editar</button>
-            <button class="tablink" onclick="openPage('Ver', this, 'orange')">Ver</button>
+    <!--    Nuevo Pedido    -->
+    <div id="Nuevo" class="tabcontent">
+      <div class="Card">
+        <h1>Nuevo Pedido</h1>
+        <h3 style="margin-top: 5%;">
+          Numero del Pedido
+        </h3>
+        <input
+          class="NumeroPedido"
+          type="number"
+          name="IdPedido"
+          value="126"
+          id="IDPEDIDO"
+        />
+        <button class="BotonCrear" onclick="addOrder()">Crear</button>
+      </div>
+    </div>
+    <!--    Editar Pedido    -->
+    <div id="Editar" class="tabcontent">
+      <div class="Card">
+        <h1>Editar Estado</h1>
+        <h3 style="margin-top: 5%;">
+          Numero del Pedido
+        </h3>
+        <input
+          class="NumeroPedido"
+          type="number"
+          name="IdPedido"
+          placeholder="127"
+        />
+        <button class="BotonPrep">En Preparacion</button>
+        <button class="BotonListo">Listo</button>
+        <button class="BotonEntregado">Entregado</button>
+      </div>
+    </div>
+    <!--    Ver Pedidos    -->
+    <div id="Ver" class="tabcontent">
+      <div class="Card">
+        <h1>Ver Pedidos</h1>
+      </div>
+    </div>
+  </body>
 
-    </footer>
+  <footer>
+    <button
+      class="tablink"
+      onclick="openPage('Nuevo', this, 'green')"
+      id="defaultOpen"
+    >
+      Nuevo
+    </button>
+    <button class="tablink" onclick="openPage('Editar', this, 'blue')">
+      Editar
+    </button>
+    <button class="tablink" onclick="openPage('Ver', this, 'orange')">
+      Ver
+    </button>
+  </footer>
 </html>
+
+<script>
+  function addOrder() {
+    var orderNumber = document.getElementById('IDPEDIDO').value;
+    do_xhr('POST', './add_order.php', 'ordinal=' + orderNumber, response => {
+      console.log(response);
+      document.getElementById('IDPEDIDO').value = orderNumber - -1;
+    });
+  }
+
+  function changeState() {}
+
+  function do_xhr(method, addr, args, callback) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+      console.log(this.status);
+      if (this.status == 200) {
+        callback(this.responseText);
+      }
+    };
+    if (method == 'POST') {
+      xhttp.open(method, addr, true);
+      xhttp.setRequestHeader(
+        'Content-type',
+        'application/x-www-form-urlencoded'
+      );
+      xhttp.send(args);
+    } else if (method == 'GET') {
+      xhttp.open(method, addr + '?' + args, true);
+      xhttp.send();
+    } else {
+      throw method + ' is not a valid method in this context';
+    }
+  }
+</script>
