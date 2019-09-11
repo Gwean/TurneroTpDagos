@@ -12,19 +12,29 @@ footer{
 }
 body,  html {
   background-color: #EEEDED;
-    height: 75.6%;
+    height: 75.8%;
     margin: 0;
     font-family: Arial;
   }
+
 h3,h1,p{
     color: #484848;
     text-align: center;
+}
+.Card{
+  align-content: center;
+  text-align: center;
+  margin: 1% 1% 1% 1%;
+  background-color: white;
+  height:110%;
+  width: 98%;
+  border: 1px solid #484848;
+  box-shadow: 2px 2px 3px #888888;
 }
 .tablink {
     background-color: #555;
     color: white;
     float: left;
-    margin: 0;
     border: none;
     outline: none;
     cursor: pointer;
@@ -45,7 +55,5 @@ h3,h1,p{
     height: 100%;
   }
   
-  #Home {background-color: #EEEDED;}
-  #News {background-color: #EEEDED;}
-  #Contact {background-color: #EEEDED;}
-  #About {background-color:#EEEDED;}
+  #Home, #Nuevo, #Editar, #Ver {background-image:   url("img.png"); }
+ 

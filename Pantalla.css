@@ -1,3 +1,6 @@
+html, body{
+    background-image:   url("img.png");
+}
 .TituloPantalla , .Pedido{
     margin: 0% 10% 0% 10%;
     display: flex;
