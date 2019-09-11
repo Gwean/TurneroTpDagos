@@ -8,8 +8,8 @@ if(!file_exists(Paths::json)){
     throw new Exception("There is no $file file", 2);
 }
 
-$ordinal = $_POST['ordinal']
-$state = $_POST['state ']
+$ordinal = $_POST['ordinal'];
+$state = $_POST['state '];
 
 // get contents
 $json = file_get_contents(Paths::json);

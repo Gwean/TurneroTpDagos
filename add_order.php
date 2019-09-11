@@ -8,7 +8,7 @@ if(!file_exists(Paths::json)){
     fclose($f);
 }
 
-$ordinal = $_POST['ordinal']
+$ordinal = $_POST['ordinal'];
 
 // get contents
 $json = file_get_contents(Paths::json);
