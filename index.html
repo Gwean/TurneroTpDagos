@@ -34,6 +34,7 @@
         <button class="BotonCrear" onclick="addOrder()">Crear</button>
       </div>
     </div>
+
     <!--    Editar Pedido    -->
     <div id="Editar" class="tabcontent">
       <div class="Card">
@@ -45,11 +46,16 @@
           class="NumeroPedido"
           type="number"
           name="IdPedido"
-          placeholder="127"
+          value="127"
+          id="IDPEDIDOEDIT"
         />
-        <button class="BotonPrep">En Preparacion</button>
-        <button class="BotonListo">Listo</button>
-        <button class="BotonEntregado">Entregado</button>
+        <button class="BotonPrep" onclick="changeState(0)">
+          En Preparacion
+        </button>
+        <button class="BotonListo" onclick="changeState(1)">Listo</button>
+        <button class="BotonEntregado" onclick="changeState(2)">
+          Entregado
+        </button>
       </div>
     </div>
     <!--    Ver Pedidos    -->
@@ -86,7 +92,18 @@
     });
   }
 
-  function changeState() {}
+  function changeState(state) {
+    var orderNumber = document.getElementById('IDPEDIDOEDIT').value;
+    do_xhr(
+      'POST',
+      './change_state.php',
+      'ordinal=' + orderNumber + '&state=' + state,
+      response => {
+        console.log(response);
+        document.getElementById('IDPEDIDOEDIT').value = '';
+      }
+    );
+  }
 
   function do_xhr(method, addr, args, callback) {
     var xhttp = new XMLHttpRequest();
