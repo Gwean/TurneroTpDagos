@@ -21,12 +21,15 @@ h3,h1,p{
     color: #484848;
     text-align: center;
 }
+.Container{
+  height: 100%;
+}
 .Card{
   align-content: center;
   text-align: center;
   margin: 1% 1% 1% 1%;
   background-color: white;
-  height:110%;
+  height:100%;
   width: 98%;
   border: 1px solid #484848;
   box-shadow: 2px 2px 3px #888888;

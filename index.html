@@ -2,7 +2,8 @@
   <head>
     <link rel="stylesheet" href="Turnero.css" />
     <link rel="stylesheet" href="Inputs.css" />
-    <script src="Turnero.js"></script>
+    <script src="Tabs.js"></script>
+    <script src="TurneroApp.js" ></script>
     <title>Mega Burger App</title>
   </head>
 
@@ -21,7 +22,7 @@
     <div id="Nuevo" class="tabcontent">
       <div class="Card">
         <h1>Nuevo Pedido</h1>
-        <h3 style="margin-top: 5%;">
+        <h3 style="margin-top: 2%;">
           Numero del Pedido
         </h3>
         <input
@@ -37,26 +38,28 @@
 
     <!--    Editar Pedido    -->
     <div id="Editar" class="tabcontent">
-      <div class="Card">
-        <h1>Editar Estado</h1>
-        <h3 style="margin-top: 5%;">
-          Numero del Pedido
-        </h3>
-        <input
-          class="NumeroPedido"
-          type="number"
-          name="IdPedido"
-          value="127"
-          id="IDPEDIDOEDIT"
-        />
-        <button class="BotonPrep" onclick="changeState(0)">
-          En Preparacion
-        </button>
-        <button class="BotonListo" onclick="changeState(1)">Listo</button>
-        <button class="BotonEntregado" onclick="changeState(2)">
-          Entregado
-        </button>
-      </div>
+        <div class="Card">
+                <div class="Container">
+                        <h1>Editar Estado</h1>
+                        <h3 style="margin-top: 2%;">
+                        Numero del Pedido
+                        </h3>
+                        <input
+                        class="NumeroPedido"
+                        type="number"
+                        name="IdPedido"
+                        value="126"
+                        id="IDPEDIDOEDIT"
+                        />
+                        <button class="BotonPrep" onclick="changeState(0)">
+                        En Preparacion
+                        </button>
+                        <button class="BotonListo" onclick="changeState(1)">Listo</button>
+                        <button class="BotonEntregado" onclick="changeState(2)">
+                        Entregado
+                        </button>
+                </div>
+        </div>
     </div>
     <!--    Ver Pedidos    -->
     <div id="Ver" class="tabcontent">
@@ -83,48 +86,3 @@
   </footer>
 </html>
 
-<script>
-  function addOrder() {
-    var orderNumber = document.getElementById('IDPEDIDO').value;
-    do_xhr('POST', './add_order.php', 'ordinal=' + orderNumber, response => {
-      console.log(response);
-      document.getElementById('IDPEDIDO').value = orderNumber - -1;
-    });
-  }
-
-  function changeState(state) {
-    var orderNumber = document.getElementById('IDPEDIDOEDIT').value;
-    do_xhr(
-      'POST',
-      './change_state.php',
-      'ordinal=' + orderNumber + '&state=' + state,
-      response => {
-        console.log(response);
-        document.getElementById('IDPEDIDOEDIT').value = '';
-      }
-    );
-  }
-
-  function do_xhr(method, addr, args, callback) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onload = function() {
-      console.log(this.status);
-      if (this.status == 200) {
-        callback(this.responseText);
-      }
-    };
-    if (method == 'POST') {
-      xhttp.open(method, addr, true);
-      xhttp.setRequestHeader(
-        'Content-type',
-        'application/x-www-form-urlencoded'
-      );
-      xhttp.send(args);
-    } else if (method == 'GET') {
-      xhttp.open(method, addr + '?' + args, true);
-      xhttp.send();
-    } else {
-      throw method + ' is not a valid method in this context';
-    }
-  }
-</script>
