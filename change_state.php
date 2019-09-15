@@ -8,15 +8,15 @@ if(!file_exists(Paths::json)){
     throw new Exception("There is no $file file", 2);
 }
 
-$ordinal = $_POST['ordinal'];
-$state = $_POST['state '];
+$ordinal = (int)$_POST['ordinal'];
+$state = (int)$_POST['state'];
 
 // get contents
 $json = file_get_contents(Paths::json);
 
 // no orders
 if($json === "" || $json === "[]"){
-    throw new Exception("There is no order number $change", 3);
+    throw new Exception("There is no order number $ordinal", 3);
 }
 
 // find order and change state, kill if necessary
@@ -37,7 +37,7 @@ foreach ($orders as $key => $order) {
 
 // order not found
 if(!$found){
-    throw new Exception("There is no order number $change", 3);
+    throw new Exception("There is no order number $ordinal", 3);
 }
 
 // write to file
